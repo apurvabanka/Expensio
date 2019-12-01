@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HOME</title>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="reminder-carousel.css" />
+<script src="reminder-carousel.js"></script>
+<link rel="stylesheet" type="text/css" href="navbar.css">
+<link rel="stylesheet" type="text/css" href="expenseadd-modal.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="index.js"></script>
+
+<style type="text/css">
+	.mb-60 {
+    margin-bottom: 60px;
+}
+.services-inner {
+    border: 2px solid black;
+    margin-left: 35px;
+    transition: .3s;
+}
+.our-services-img {
+    float: left;
+    margin-left: -36px;
+    margin-right: 22px;
+    margin-top: 28px;
+}
+.our-services-text {
+    padding-right: 10px;
+}
+.our-services-text {
+    overflow: hidden;
+    padding: 28px 0 25px;
+}
+.our-services-text h4 {
+    color: #222222;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    padding-bottom: 10px;
+    position: relative;
+    text-transform: uppercase;
+}
+.our-services-text h4::before {
+    background: #ec6d48 none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    position: absolute;
+    width: 35px;
+}
+.our-services-wrapper:hover .services-inner {
+    background: #fff none repeat scroll 0 0;
+    border: 2px solid transparent;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
+}
+.our-services-text p {
+    margin-bottom: 0;
+}
+p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #666;
+    margin-bottom: 15px;
+}
+.navbar-brand{
+	font-family: 'Roboto Condensed', sans-serif;
+}
+.mon{
+	font-size: 20px;
+	font-family: 'Roboto Condensed', sans-serif;
+}
+.black{
+	color:black;
+}
+.pad15{
+	border: solid black 2px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+</head>
+<body onload="set()">
+	<nav class="navbar fixed-top navbar-expand-md flex-nowrap navbar-new-top">
+            <a href="/" class="navbar-brand">Expensio</a>
+            <ul class="nav navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav flex-row">
+                <li class="nav-item">
+                    <a class="nav-link px-2">Analytics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-2">Goals</a>
+                </li>
+                <li class="nav-item">
+                    <button type="button"  class="header-btn">Logout</button>
+                </li>
+            </ul>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbar2">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+ <br>
+ <br>
+ <br>
+<div class="container">
+    <h2 class="text-center">OVERVIEW</h2><br>
+	<div class="row">
+		<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+						<div class="our-services-wrapper mb-60">
+							<div class="services-inner">
+								<div class="our-services-img">
+								<img src="mr.png" width="68px" alt="">
+								</div>
+								<div class="our-services-text">
+									<h4>Money Spent</h4>
+									<p class="mon"><i class="fa fa-inr" style="font-size:24px"></i><span id="ms"></span></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+						<div class="our-services-wrapper mb-60">
+							<div class="services-inner">
+								<div class="our-services-img">
+								<img src="coin.png" width="68px" alt="">
+								</div>
+								<div class="our-services-text">
+									<h4>Profits</h4>
+									<p class="mon"><i class="fa fa-inr" style="font-size:24px"></i>650</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+						<div class="our-services-wrapper mb-60">
+							<div class="services-inner">
+								<div class="our-services-img">
+								<img src="hand.png" width="68px" alt="">
+								</div>
+								<div class="our-services-text">
+									<h4>Monthly Budget</h4>
+									<p class="mon"><i class="fa fa-inr" style="font-size:24px"></i>3800</p>
+								</div>
+							</div>
+						</div>
+					</div>
+	</div>
+</div>
+<h3 class="text-center">Expenses</h3>
+<div class="container">
+    	    <a class="btn btn-primary btn-outline" data-toggle="modal" data-target="#squarespaceModal">Add Expense</a>
+<input class="form-control" type="text" placeholder="Search" aria-label="Search" style="width:30%;float:right;" onkeyup="fetch_search_expenses()" id="srch">
+            <br><br>
+	<div class="row">
+		<div class="span5">
+            <table class="table table-striped table-condensed" id="expensetable" style="margin-left: 65%;">
+                  <thead>
+                  <tr>
+                      <th>Expense</th>
+                      <th>Date of Expense</th>
+                      <th>Amount</th>
+                      <th>Type</th> 
+                      <th></th>                                         
+                  </tr>
+              </thead>   
+              <tbody id="exptable">                                 
+              </tbody>
+            </table>
+            </div>
+	</div>
+</div>
+<br>
+<h3 class="text-center">Upcoming Reminders</h3>
+<div class="container">
+	<a class="btn btn-primary btn-outline" data-toggle="modal" data-target="#remainder">Add Remainder</a>
+		<hr/>
+	<div class="row">
+		<div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
+            <div class="MultiCarousel-inner" id="remcarousel">
+            	    <div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            	<div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            	<div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            	<div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            	<div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            	<div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            	<div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            	<div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            	<div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            	<div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            	<div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            	<div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            	<div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            	<div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            	<div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            	<div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            	<div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            	<div class="item">
+            		<div class="pad15"></div>
+            	</div>
+            </div>
+            <button class="btn btn-primary leftLst"><</button>
+            <button class="btn btn-primary rightLst">></button>
+        </div>
+	</div>
+</div>
+<hr/>
+<!-- <p>modal for add expense</p> -->
+<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+						<h3>Add Expense</h3>
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
+		</div>
+		<br>
+		<div class="container">
+              <div class="form-group">
+                <label>Category</label>
+                <select id="category">
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Expense Name</label>
+                <input type="text" id="expname" class="form-control" placeholder="Expense Name" required>
+              </div>
+              <div class="form-group">
+                <label>Date</label>
+                <input type="date" id="expdate" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label>Amount</label>
+                  <input type="number" id="expamt" class="form-control" required>
+              </div>
+              <center><button class="btn btn-success" onclick="add_expense()">Add</button></center>
+		</div>
+		<br>
+	</div>
+  </div>
+</div>
+<div class="modal fade" id="remainder" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h3></i></span>Reminder</h3>
+<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
+</div>
+<br>
+<div class="container">
+              <div class="form-group">
+                <label>Reminder Name</label>
+                <input type="text" class="form-control" placeholder="Name" id="remname" required>
+              </div>
+              <div class="form-group">
+                <label>Date</label>
+                <input type="date" class="form-control" id="remdate">
+              </div>
+              <div class="form-group">
+              <label>Message</label>
+              <input type="text" class="form-control" placeholder="Type Here..." id="remmsg">
+              </div>
+              <div class="form-group">
+              <label>Amount</label>
+              <input type="number" class="form-control" id="remamt" required>
+              </div>
+              <center><button class="btn btn-success" onclick="add_reminder()">Add</button></center>
+</div>
+<br>
+</div>
+</div>
+</div>
+</body>
+<script type="text/javascript">
+function set(){
+	categories();
+	expenses();
+	fetch_reminders();
+	money_spent();
+}
+</script>
+</html>

@@ -1,0 +1,38 @@
+.navbar-new-top{
+    background: #333333;
+}
+.navbar-brand{
+    font-weight: 600;
+}
+.navbar-brand img{
+    width: 20%;
+}
+.navbar-new-top ul{
+    margin-right: 9%;
+}
+.navbar-new-top ul li{
+    margin-right: 8%;
+}
+.navbar-nav .nav-item a {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 1s ease;
+}
+.navbar-nav .nav-item a:hover{
+    color: #0062cc;
+}
+.header-btn{
+    width: 161%;
+    border: none;
+    border-radius: 1rem;
+    padding: 8%;
+    background: #ffffff;
+    color: #000000;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+}
+.navbar-brand{
+	font-family: 'Roboto Condensed', sans-serif;
+}
